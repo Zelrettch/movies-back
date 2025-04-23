@@ -1,0 +1,42 @@
+model Movie {
+  id        Int    @id @default(autoincrement())
+  title     String
+  storyline String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  addedToFavBy User[]
+  ratings      Rating[]
+  reviews      Review[]
+  genres       Genre[]
+}
+
+model Rating {
+  id      Int   @id @default(autoincrement())
+  value   Int
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  movieId Int
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  Int
+}
+
+model Review {
+  id    Int    @id @default(autoincrement())
+  title String
+  text  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  movieId Int
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  Int
+}
+
+model Genre {
+  id     Int     @id @default(autoincrement())
+  name   String
+  movies Movie[]
+}

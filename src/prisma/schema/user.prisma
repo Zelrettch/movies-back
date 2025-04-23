@@ -1,0 +1,26 @@
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
+  password String
+
+  role            Role     @default(USER)
+  favouriteMovies Movie[]
+  ratings         Rating[]
+  reviews         Review[]
+  session         Session?
+}
+
+model Session {
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    @unique
+  token  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
