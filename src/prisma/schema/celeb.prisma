@@ -1,0 +1,11 @@
+model Celeb {
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  biography String @db.Text
+  imageURL  String
+
+  director Movie[] @relation("directors")
+  writer   Movie[] @relation("writers")
+  cast     Movie[] @relation("cast")
+}

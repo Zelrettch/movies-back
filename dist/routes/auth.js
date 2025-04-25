@@ -7,4 +7,5 @@ const auth_2 = require("../controllers/auth");
 const router = (0, express_1.Router)();
 router.post('/register', (0, validateBody_1.validateBody)(auth_1.registerUserSchema), auth_2.registerUserController);
 router.post('/login', (0, validateBody_1.validateBody)(auth_1.loginUserSchema), auth_2.loginUserController);
+router.post('/logout', auth_2.logoutUserController);
 exports.default = router;

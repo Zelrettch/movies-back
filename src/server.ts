@@ -22,10 +22,6 @@ export const setupServer = (): void => {
     }),
   );
 
-  app.get('/', (req: Request, res: Response) => {
-    res.status(200).send('HELLO');
-  });
-
   app.use(router);
 
   app.use(notFoundHandler);

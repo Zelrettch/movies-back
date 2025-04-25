@@ -117,12 +117,32 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CelebScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  biography: 'biography',
+  imageURL: 'imageURL'
+};
+
 exports.Prisma.MovieScalarFieldEnum = {
+  id: 'id',
+  movieDataId: 'movieDataId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  celebId: 'celebId'
+};
+
+exports.Prisma.MovieDataScalarFieldEnum = {
   id: 'id',
   title: 'title',
   storyline: 'storyline',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  posterURL: 'posterURL',
+  releaseDate: 'releaseDate',
+  length: 'length',
+  countryOfOrigin: 'countryOfOrigin',
+  productionCompany: 'productionCompany',
+  language: 'language'
 };
 
 exports.Prisma.RatingScalarFieldEnum = {
@@ -167,9 +187,25 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.MovieOrderByRelevanceFieldEnum = {
+exports.Prisma.CelebOrderByRelevanceFieldEnum = {
+  firstName: 'firstName',
+  lastName: 'lastName',
+  biography: 'biography',
+  imageURL: 'imageURL'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.MovieDataOrderByRelevanceFieldEnum = {
   title: 'title',
-  storyline: 'storyline'
+  storyline: 'storyline',
+  posterURL: 'posterURL',
+  countryOfOrigin: 'countryOfOrigin',
+  productionCompany: 'productionCompany',
+  language: 'language'
 };
 
 exports.Prisma.ReviewOrderByRelevanceFieldEnum = {
@@ -196,7 +232,9 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
+  Celeb: 'Celeb',
   Movie: 'Movie',
+  MovieData: 'MovieData',
   Rating: 'Rating',
   Review: 'Review',
   Genre: 'Genre',

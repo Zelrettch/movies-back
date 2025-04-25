@@ -3,6 +3,8 @@ import { User } from '../prisma/client';
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { randomBytes } from 'crypto';
+import { Auth } from '../validation/auth';
+import { PrismaClientKnownRequestError } from '../prisma/client/runtime/library';
 
 type SafeUser = Omit<User, 'password'>;
 
@@ -13,9 +15,18 @@ function createSafeUser(user: User): SafeUser {
 
 export async function registerUser(data: Auth.RegisterBody) {
   data.password = await bcrypt.hash(data.password, 10);
-  const user = await prisma.user.create({ data });
-
-  return createSafeUser(user);
+  try {
+    const user = await prisma.user.create({ data });
+    return createSafeUser(user);
+  } catch (error) {
+    if (
+      error instanceof PrismaClientKnownRequestError &&
+      error.code === 'P2002'
+    ) {
+      throw createHttpError(409, 'Email in use');
+    }
+    throw error;
+  }
 }
 
 export async function loginUser(data: Auth.LoginBody) {
@@ -62,4 +73,12 @@ export async function loginUser(data: Auth.LoginBody) {
   ]);
 
   return updatedUser.session;
+}
+
+export async function logoutUser(session: string) {
+  await prisma.session.deleteMany({
+    where: {
+      token: session,
+    },
+  });
 }

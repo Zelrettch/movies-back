@@ -7936,14 +7936,14 @@ export namespace Prisma {
 
   export type SessionWhereUniqueInput = Prisma.AtLeast<{
     userId?: number
+    token?: string
     AND?: SessionWhereInput | SessionWhereInput[]
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
-    token?: StringFilter<"Session"> | string
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "userId">
+  }, "userId" | "token">
 
   export type SessionOrderByWithAggregationInput = {
     userId?: SortOrder

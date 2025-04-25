@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerUserController = registerUserController;
 exports.loginUserController = loginUserController;
+exports.logoutUserController = logoutUserController;
 const auth_1 = require("../services/auth");
 function registerUserController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -20,7 +21,20 @@ function registerUserController(req, res) {
 }
 function loginUserController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = yield (0, auth_1.loginUser)(req.body);
-        res.status(200).json(user);
+        const session = yield (0, auth_1.loginUser)(req.body);
+        res.cookie('session', session === null || session === void 0 ? void 0 : session.token, {
+            httpOnly: true,
+        });
+        res.status(200).send();
+    });
+}
+function logoutUserController(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const session = req.cookies.session;
+        if (session) {
+            yield (0, auth_1.logoutUser)(session);
+        }
+        res.clearCookie('session');
+        res.status(204).send();
     });
 }

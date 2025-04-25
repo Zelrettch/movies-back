@@ -25,6 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerUser = registerUser;
 exports.loginUser = loginUser;
+exports.logoutUser = logoutUser;
 const prisma_1 = __importDefault(require("../utils/prisma"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const http_errors_1 = __importDefault(require("http-errors"));
@@ -74,11 +75,20 @@ function loginUser(data) {
                         create: { token },
                     },
                 },
-                include: {
+                select: {
                     session: true,
                 },
             }),
         ]);
-        return updatedUser;
+        return updatedUser.session;
+    });
+}
+function logoutUser(session) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield prisma_1.default.session.deleteMany({
+            where: {
+                token: session,
+            },
+        });
     });
 }

@@ -1,18 +1,16 @@
-import { NextFunction, Request, request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import createHttpError from 'http-errors';
-import { ObjectSchema } from 'joi';
+import { ZodObject, ZodRawShape } from 'zod';
 
 export const validateBody =
-  (schema: ObjectSchema) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  <T extends ZodObject<ZodRawShape>>(schema: T) =>
+  (req: Request, res: Response, next: NextFunction) => {
     try {
-      await schema.validateAsync(req.body, {
-        abortEarly: false,
-      });
+      req.body = schema.parse(req.body);
       next();
     } catch (e: any) {
       const error = createHttpError(400, 'Bad request', {
-        errors: e.details,
+        errors: e.issues,
       });
       next(error);
     }

@@ -1,10 +1,8 @@
 import { Router } from 'express';
 import authRouter from './auth';
-import celebRouter from './celebrities';
 
 const router = Router();
-
-router.use('/auth', authRouter);
-router.use('/celeb', celebRouter);
+router.use(authRouter);
+router.post('/');
 
 export default router;
