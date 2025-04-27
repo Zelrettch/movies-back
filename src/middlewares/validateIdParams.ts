@@ -3,7 +3,8 @@ import createHttpError from 'http-errors';
 import { z } from 'zod';
 
 export const validateIdParams =
-  (params: string[]) => (req: Request, res: Response, next: NextFunction) => {
+  (...params: string[]) =>
+  (req: Request, res: Response, next: NextFunction) => {
     for (const param of params) {
       const value = req.params[param];
       try {

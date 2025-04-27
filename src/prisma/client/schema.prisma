@@ -80,7 +80,7 @@ model Genre {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder"]
+  previewFeatures = ["prismaSchemaFolder", "typedSql"]
   output          = "../client"
 }
 
