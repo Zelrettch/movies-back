@@ -1,6 +1,5 @@
 import prisma from '../utils/prisma';
 import { CelebData } from '../validation/celebrities';
-import prismaErrorWrapper from '../utils/prismaErrorHandlerWrapper';
 import { countFilteredCelebs, getFilteredCelebs } from '../prisma/client/sql';
 import calculatePaginationData from '../utils/calculatePaginationData';
 
@@ -8,7 +7,7 @@ export async function createCelebrity(data: CelebData.Create) {
   return await prisma.celeb.create({ data });
 }
 
-const _getCelebById = async (id: number) => {
+export const getCelebById = async (id: number) => {
   const celeb = await prisma.celeb.findUniqueOrThrow({
     where: { id },
     include: {
@@ -20,13 +19,13 @@ const _getCelebById = async (id: number) => {
   return celeb;
 };
 
-const _deleteCeleb = async (id: number) => {
+export const deleteCeleb = async (id: number) => {
   await prisma.celeb.delete({
     where: { id },
   });
 };
 
-const _updateCeleb = async (id: number, data: CelebData.Update) => {
+export const updateCeleb = async (id: number, data: CelebData.Update) => {
   return await prisma.celeb.update({
     where: {
       id,
@@ -54,7 +53,3 @@ export const getCelebs = async (params: CelebData.GetParams) => {
     ...paginationData,
   };
 };
-
-export const deleteCeleb = prismaErrorWrapper(_deleteCeleb);
-export const updateCeleb = prismaErrorWrapper(_updateCeleb);
-export const getCelebById = prismaErrorWrapper(_getCelebById);

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { checkNumer } from '../utils/chekNumber';
 
 export const createCelebritySchema = z
   .object({
@@ -17,11 +18,6 @@ export const updateCelebritySchema = z
     imageURL: z.string().optional(),
   })
   .strict();
-
-const checkNumer = (val: string) => {
-  const number = Number(val);
-  return Number.isInteger(number) && number > 0;
-};
 
 export const getCelebrityParamsSchema = z.object({
   name: z.string().default(''),

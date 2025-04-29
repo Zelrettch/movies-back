@@ -2737,13 +2737,13 @@ export namespace Prisma {
   export type MovieAvgAggregateOutputType = {
     id: number | null
     movieDataId: number | null
-    celebId: number | null
+    directorId: number | null
   }
 
   export type MovieSumAggregateOutputType = {
     id: number | null
     movieDataId: number | null
-    celebId: number | null
+    directorId: number | null
   }
 
   export type MovieMinAggregateOutputType = {
@@ -2751,7 +2751,7 @@ export namespace Prisma {
     movieDataId: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    celebId: number | null
+    directorId: number | null
   }
 
   export type MovieMaxAggregateOutputType = {
@@ -2759,7 +2759,7 @@ export namespace Prisma {
     movieDataId: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    celebId: number | null
+    directorId: number | null
   }
 
   export type MovieCountAggregateOutputType = {
@@ -2767,7 +2767,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt: number
     updatedAt: number
-    celebId: number
+    directorId: number
     _all: number
   }
 
@@ -2775,13 +2775,13 @@ export namespace Prisma {
   export type MovieAvgAggregateInputType = {
     id?: true
     movieDataId?: true
-    celebId?: true
+    directorId?: true
   }
 
   export type MovieSumAggregateInputType = {
     id?: true
     movieDataId?: true
-    celebId?: true
+    directorId?: true
   }
 
   export type MovieMinAggregateInputType = {
@@ -2789,7 +2789,7 @@ export namespace Prisma {
     movieDataId?: true
     createdAt?: true
     updatedAt?: true
-    celebId?: true
+    directorId?: true
   }
 
   export type MovieMaxAggregateInputType = {
@@ -2797,7 +2797,7 @@ export namespace Prisma {
     movieDataId?: true
     createdAt?: true
     updatedAt?: true
-    celebId?: true
+    directorId?: true
   }
 
   export type MovieCountAggregateInputType = {
@@ -2805,7 +2805,7 @@ export namespace Prisma {
     movieDataId?: true
     createdAt?: true
     updatedAt?: true
-    celebId?: true
+    directorId?: true
     _all?: true
   }
 
@@ -2900,7 +2900,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt: Date
     updatedAt: Date
-    celebId: number | null
+    directorId: number | null
     _count: MovieCountAggregateOutputType | null
     _avg: MovieAvgAggregateOutputType | null
     _sum: MovieSumAggregateOutputType | null
@@ -2927,8 +2927,8 @@ export namespace Prisma {
     movieDataId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    celebId?: boolean
-    data?: boolean | MovieDataDefaultArgs<ExtArgs>
+    directorId?: boolean
+    movieData?: boolean | MovieDataDefaultArgs<ExtArgs>
     addedToFavBy?: boolean | Movie$addedToFavByArgs<ExtArgs>
     ratings?: boolean | Movie$ratingsArgs<ExtArgs>
     reviews?: boolean | Movie$reviewsArgs<ExtArgs>
@@ -2946,12 +2946,12 @@ export namespace Prisma {
     movieDataId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    celebId?: boolean
+    directorId?: boolean
   }
 
-  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "movieDataId" | "createdAt" | "updatedAt" | "celebId", ExtArgs["result"]["movie"]>
+  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "movieDataId" | "createdAt" | "updatedAt" | "directorId", ExtArgs["result"]["movie"]>
   export type MovieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    data?: boolean | MovieDataDefaultArgs<ExtArgs>
+    movieData?: boolean | MovieDataDefaultArgs<ExtArgs>
     addedToFavBy?: boolean | Movie$addedToFavByArgs<ExtArgs>
     ratings?: boolean | Movie$ratingsArgs<ExtArgs>
     reviews?: boolean | Movie$reviewsArgs<ExtArgs>
@@ -2965,7 +2965,7 @@ export namespace Prisma {
   export type $MoviePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Movie"
     objects: {
-      data: Prisma.$MovieDataPayload<ExtArgs>
+      movieData: Prisma.$MovieDataPayload<ExtArgs>
       addedToFavBy: Prisma.$UserPayload<ExtArgs>[]
       ratings: Prisma.$RatingPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
@@ -2979,7 +2979,7 @@ export namespace Prisma {
       movieDataId: number
       createdAt: Date
       updatedAt: Date
-      celebId: number | null
+      directorId: number | null
     }, ExtArgs["result"]["movie"]>
     composites: {}
   }
@@ -3320,7 +3320,7 @@ export namespace Prisma {
    */
   export interface Prisma__MovieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    data<T extends MovieDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MovieDataDefaultArgs<ExtArgs>>): Prisma__MovieDataClient<$Result.GetResult<Prisma.$MovieDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    movieData<T extends MovieDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MovieDataDefaultArgs<ExtArgs>>): Prisma__MovieDataClient<$Result.GetResult<Prisma.$MovieDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     addedToFavBy<T extends Movie$addedToFavByArgs<ExtArgs> = {}>(args?: Subset<T, Movie$addedToFavByArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ratings<T extends Movie$ratingsArgs<ExtArgs> = {}>(args?: Subset<T, Movie$ratingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Movie$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Movie$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3361,7 +3361,7 @@ export namespace Prisma {
     readonly movieDataId: FieldRef<"Movie", 'Int'>
     readonly createdAt: FieldRef<"Movie", 'DateTime'>
     readonly updatedAt: FieldRef<"Movie", 'DateTime'>
-    readonly celebId: FieldRef<"Movie", 'Int'>
+    readonly directorId: FieldRef<"Movie", 'Int'>
   }
     
 
@@ -3900,12 +3900,10 @@ export namespace Prisma {
 
   export type MovieDataAvgAggregateOutputType = {
     id: number | null
-    length: number | null
   }
 
   export type MovieDataSumAggregateOutputType = {
     id: number | null
-    length: number | null
   }
 
   export type MovieDataMinAggregateOutputType = {
@@ -3914,7 +3912,7 @@ export namespace Prisma {
     storyline: string | null
     posterURL: string | null
     releaseDate: Date | null
-    length: number | null
+    length: string | null
     countryOfOrigin: string | null
     productionCompany: string | null
     language: string | null
@@ -3926,7 +3924,7 @@ export namespace Prisma {
     storyline: string | null
     posterURL: string | null
     releaseDate: Date | null
-    length: number | null
+    length: string | null
     countryOfOrigin: string | null
     productionCompany: string | null
     language: string | null
@@ -3948,12 +3946,10 @@ export namespace Prisma {
 
   export type MovieDataAvgAggregateInputType = {
     id?: true
-    length?: true
   }
 
   export type MovieDataSumAggregateInputType = {
     id?: true
-    length?: true
   }
 
   export type MovieDataMinAggregateInputType = {
@@ -4085,7 +4081,7 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
@@ -4153,7 +4149,7 @@ export namespace Prisma {
       storyline: string
       posterURL: string
       releaseDate: Date
-      length: number
+      length: string
       countryOfOrigin: string
       productionCompany: string
       language: string
@@ -4532,7 +4528,7 @@ export namespace Prisma {
     readonly storyline: FieldRef<"MovieData", 'String'>
     readonly posterURL: FieldRef<"MovieData", 'String'>
     readonly releaseDate: FieldRef<"MovieData", 'DateTime'>
-    readonly length: FieldRef<"MovieData", 'Int'>
+    readonly length: FieldRef<"MovieData", 'String'>
     readonly countryOfOrigin: FieldRef<"MovieData", 'String'>
     readonly productionCompany: FieldRef<"MovieData", 'String'>
     readonly language: FieldRef<"MovieData", 'String'>
@@ -9887,7 +9883,7 @@ export namespace Prisma {
     movieDataId: 'movieDataId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    celebId: 'celebId'
+    directorId: 'directorId'
   };
 
   export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
@@ -9990,6 +9986,7 @@ export namespace Prisma {
     title: 'title',
     storyline: 'storyline',
     posterURL: 'posterURL',
+    length: 'length',
     countryOfOrigin: 'countryOfOrigin',
     productionCompany: 'productionCompany',
     language: 'language'
@@ -10144,8 +10141,8 @@ export namespace Prisma {
     movieDataId?: IntFilter<"Movie"> | number
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
-    celebId?: IntNullableFilter<"Movie"> | number | null
-    data?: XOR<MovieDataScalarRelationFilter, MovieDataWhereInput>
+    directorId?: IntNullableFilter<"Movie"> | number | null
+    movieData?: XOR<MovieDataScalarRelationFilter, MovieDataWhereInput>
     addedToFavBy?: UserListRelationFilter
     ratings?: RatingListRelationFilter
     reviews?: ReviewListRelationFilter
@@ -10160,8 +10157,8 @@ export namespace Prisma {
     movieDataId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    celebId?: SortOrderInput | SortOrder
-    data?: MovieDataOrderByWithRelationInput
+    directorId?: SortOrderInput | SortOrder
+    movieData?: MovieDataOrderByWithRelationInput
     addedToFavBy?: UserOrderByRelationAggregateInput
     ratings?: RatingOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
@@ -10179,8 +10176,8 @@ export namespace Prisma {
     NOT?: MovieWhereInput | MovieWhereInput[]
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
-    celebId?: IntNullableFilter<"Movie"> | number | null
-    data?: XOR<MovieDataScalarRelationFilter, MovieDataWhereInput>
+    directorId?: IntNullableFilter<"Movie"> | number | null
+    movieData?: XOR<MovieDataScalarRelationFilter, MovieDataWhereInput>
     addedToFavBy?: UserListRelationFilter
     ratings?: RatingListRelationFilter
     reviews?: ReviewListRelationFilter
@@ -10195,7 +10192,7 @@ export namespace Prisma {
     movieDataId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    celebId?: SortOrderInput | SortOrder
+    directorId?: SortOrderInput | SortOrder
     _count?: MovieCountOrderByAggregateInput
     _avg?: MovieAvgOrderByAggregateInput
     _max?: MovieMaxOrderByAggregateInput
@@ -10211,7 +10208,7 @@ export namespace Prisma {
     movieDataId?: IntWithAggregatesFilter<"Movie"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
-    celebId?: IntNullableWithAggregatesFilter<"Movie"> | number | null
+    directorId?: IntNullableWithAggregatesFilter<"Movie"> | number | null
   }
 
   export type MovieDataWhereInput = {
@@ -10223,7 +10220,7 @@ export namespace Prisma {
     storyline?: StringFilter<"MovieData"> | string
     posterURL?: StringFilter<"MovieData"> | string
     releaseDate?: DateTimeFilter<"MovieData"> | Date | string
-    length?: IntFilter<"MovieData"> | number
+    length?: StringFilter<"MovieData"> | string
     countryOfOrigin?: StringFilter<"MovieData"> | string
     productionCompany?: StringFilter<"MovieData"> | string
     language?: StringFilter<"MovieData"> | string
@@ -10253,7 +10250,7 @@ export namespace Prisma {
     storyline?: StringFilter<"MovieData"> | string
     posterURL?: StringFilter<"MovieData"> | string
     releaseDate?: DateTimeFilter<"MovieData"> | Date | string
-    length?: IntFilter<"MovieData"> | number
+    length?: StringFilter<"MovieData"> | string
     countryOfOrigin?: StringFilter<"MovieData"> | string
     productionCompany?: StringFilter<"MovieData"> | string
     language?: StringFilter<"MovieData"> | string
@@ -10286,7 +10283,7 @@ export namespace Prisma {
     storyline?: StringWithAggregatesFilter<"MovieData"> | string
     posterURL?: StringWithAggregatesFilter<"MovieData"> | string
     releaseDate?: DateTimeWithAggregatesFilter<"MovieData"> | Date | string
-    length?: IntWithAggregatesFilter<"MovieData"> | number
+    length?: StringWithAggregatesFilter<"MovieData"> | string
     countryOfOrigin?: StringWithAggregatesFilter<"MovieData"> | string
     productionCompany?: StringWithAggregatesFilter<"MovieData"> | string
     language?: StringWithAggregatesFilter<"MovieData"> | string
@@ -10649,7 +10646,7 @@ export namespace Prisma {
   export type MovieCreateInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
@@ -10664,7 +10661,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
@@ -10676,7 +10673,7 @@ export namespace Prisma {
   export type MovieUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
@@ -10691,7 +10688,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
@@ -10705,7 +10702,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
   }
 
   export type MovieUpdateManyMutationInput = {
@@ -10718,7 +10715,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type MovieDataCreateInput = {
@@ -10726,11 +10723,11 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date | string
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
-    Movie?: MovieCreateNestedOneWithoutDataInput
+    Movie?: MovieCreateNestedOneWithoutMovieDataInput
   }
 
   export type MovieDataUncheckedCreateInput = {
@@ -10739,11 +10736,11 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date | string
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
-    Movie?: MovieUncheckedCreateNestedOneWithoutDataInput
+    Movie?: MovieUncheckedCreateNestedOneWithoutMovieDataInput
   }
 
   export type MovieDataUpdateInput = {
@@ -10751,11 +10748,11 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
-    Movie?: MovieUpdateOneWithoutDataNestedInput
+    Movie?: MovieUpdateOneWithoutMovieDataNestedInput
   }
 
   export type MovieDataUncheckedUpdateInput = {
@@ -10764,11 +10761,11 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
-    Movie?: MovieUncheckedUpdateOneWithoutDataNestedInput
+    Movie?: MovieUncheckedUpdateOneWithoutMovieDataNestedInput
   }
 
   export type MovieDataCreateManyInput = {
@@ -10777,7 +10774,7 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date | string
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
@@ -10788,7 +10785,7 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
@@ -10800,7 +10797,7 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
@@ -11268,13 +11265,13 @@ export namespace Prisma {
     movieDataId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    celebId?: SortOrder
+    directorId?: SortOrder
   }
 
   export type MovieAvgOrderByAggregateInput = {
     id?: SortOrder
     movieDataId?: SortOrder
-    celebId?: SortOrder
+    directorId?: SortOrder
   }
 
   export type MovieMaxOrderByAggregateInput = {
@@ -11282,7 +11279,7 @@ export namespace Prisma {
     movieDataId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    celebId?: SortOrder
+    directorId?: SortOrder
   }
 
   export type MovieMinOrderByAggregateInput = {
@@ -11290,13 +11287,13 @@ export namespace Prisma {
     movieDataId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    celebId?: SortOrder
+    directorId?: SortOrder
   }
 
   export type MovieSumOrderByAggregateInput = {
     id?: SortOrder
     movieDataId?: SortOrder
-    celebId?: SortOrder
+    directorId?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -11354,7 +11351,6 @@ export namespace Prisma {
 
   export type MovieDataAvgOrderByAggregateInput = {
     id?: SortOrder
-    length?: SortOrder
   }
 
   export type MovieDataMaxOrderByAggregateInput = {
@@ -11383,7 +11379,6 @@ export namespace Prisma {
 
   export type MovieDataSumOrderByAggregateInput = {
     id?: SortOrder
-    length?: SortOrder
   }
 
   export type MovieScalarRelationFilter = {
@@ -12011,36 +12006,36 @@ export namespace Prisma {
     deleteMany?: CelebScalarWhereInput | CelebScalarWhereInput[]
   }
 
-  export type MovieCreateNestedOneWithoutDataInput = {
-    create?: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
-    connectOrCreate?: MovieCreateOrConnectWithoutDataInput
+  export type MovieCreateNestedOneWithoutMovieDataInput = {
+    create?: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutMovieDataInput
     connect?: MovieWhereUniqueInput
   }
 
-  export type MovieUncheckedCreateNestedOneWithoutDataInput = {
-    create?: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
-    connectOrCreate?: MovieCreateOrConnectWithoutDataInput
+  export type MovieUncheckedCreateNestedOneWithoutMovieDataInput = {
+    create?: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutMovieDataInput
     connect?: MovieWhereUniqueInput
   }
 
-  export type MovieUpdateOneWithoutDataNestedInput = {
-    create?: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
-    connectOrCreate?: MovieCreateOrConnectWithoutDataInput
-    upsert?: MovieUpsertWithoutDataInput
+  export type MovieUpdateOneWithoutMovieDataNestedInput = {
+    create?: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutMovieDataInput
+    upsert?: MovieUpsertWithoutMovieDataInput
     disconnect?: MovieWhereInput | boolean
     delete?: MovieWhereInput | boolean
     connect?: MovieWhereUniqueInput
-    update?: XOR<XOR<MovieUpdateToOneWithWhereWithoutDataInput, MovieUpdateWithoutDataInput>, MovieUncheckedUpdateWithoutDataInput>
+    update?: XOR<XOR<MovieUpdateToOneWithWhereWithoutMovieDataInput, MovieUpdateWithoutMovieDataInput>, MovieUncheckedUpdateWithoutMovieDataInput>
   }
 
-  export type MovieUncheckedUpdateOneWithoutDataNestedInput = {
-    create?: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
-    connectOrCreate?: MovieCreateOrConnectWithoutDataInput
-    upsert?: MovieUpsertWithoutDataInput
+  export type MovieUncheckedUpdateOneWithoutMovieDataNestedInput = {
+    create?: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutMovieDataInput
+    upsert?: MovieUpsertWithoutMovieDataInput
     disconnect?: MovieWhereInput | boolean
     delete?: MovieWhereInput | boolean
     connect?: MovieWhereUniqueInput
-    update?: XOR<XOR<MovieUpdateToOneWithWhereWithoutDataInput, MovieUpdateWithoutDataInput>, MovieUncheckedUpdateWithoutDataInput>
+    update?: XOR<XOR<MovieUpdateToOneWithWhereWithoutMovieDataInput, MovieUpdateWithoutMovieDataInput>, MovieUncheckedUpdateWithoutMovieDataInput>
   }
 
   export type MovieCreateNestedOneWithoutRatingsInput = {
@@ -12463,7 +12458,7 @@ export namespace Prisma {
   export type MovieCreateWithoutDirectorInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
@@ -12498,7 +12493,7 @@ export namespace Prisma {
   export type MovieCreateWithoutWritersInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
@@ -12512,7 +12507,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
@@ -12528,7 +12523,7 @@ export namespace Prisma {
   export type MovieCreateWithoutCastInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
@@ -12542,7 +12537,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
@@ -12579,7 +12574,7 @@ export namespace Prisma {
     movieDataId?: IntFilter<"Movie"> | number
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
-    celebId?: IntNullableFilter<"Movie"> | number | null
+    directorId?: IntNullableFilter<"Movie"> | number | null
   }
 
   export type MovieUpsertWithWhereUniqueWithoutWritersInput = {
@@ -12619,7 +12614,7 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date | string
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
@@ -12631,7 +12626,7 @@ export namespace Prisma {
     storyline: string
     posterURL: string
     releaseDate: Date | string
-    length: number
+    length: string
     countryOfOrigin: string
     productionCompany: string
     language: string
@@ -12818,7 +12813,7 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
@@ -12830,7 +12825,7 @@ export namespace Prisma {
     storyline?: StringFieldUpdateOperationsInput | string
     posterURL?: StringFieldUpdateOperationsInput | string
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    length?: IntFieldUpdateOperationsInput | number
+    length?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: StringFieldUpdateOperationsInput | string
     productionCompany?: StringFieldUpdateOperationsInput | string
     language?: StringFieldUpdateOperationsInput | string
@@ -13015,7 +13010,7 @@ export namespace Prisma {
     data: XOR<CelebUpdateManyMutationInput, CelebUncheckedUpdateManyWithoutCastInput>
   }
 
-  export type MovieCreateWithoutDataInput = {
+  export type MovieCreateWithoutMovieDataInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
@@ -13027,11 +13022,11 @@ export namespace Prisma {
     cast?: CelebCreateNestedManyWithoutCastInput
   }
 
-  export type MovieUncheckedCreateWithoutDataInput = {
+  export type MovieUncheckedCreateWithoutMovieDataInput = {
     id?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
@@ -13040,23 +13035,23 @@ export namespace Prisma {
     cast?: CelebUncheckedCreateNestedManyWithoutCastInput
   }
 
-  export type MovieCreateOrConnectWithoutDataInput = {
+  export type MovieCreateOrConnectWithoutMovieDataInput = {
     where: MovieWhereUniqueInput
-    create: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
+    create: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
   }
 
-  export type MovieUpsertWithoutDataInput = {
-    update: XOR<MovieUpdateWithoutDataInput, MovieUncheckedUpdateWithoutDataInput>
-    create: XOR<MovieCreateWithoutDataInput, MovieUncheckedCreateWithoutDataInput>
+  export type MovieUpsertWithoutMovieDataInput = {
+    update: XOR<MovieUpdateWithoutMovieDataInput, MovieUncheckedUpdateWithoutMovieDataInput>
+    create: XOR<MovieCreateWithoutMovieDataInput, MovieUncheckedCreateWithoutMovieDataInput>
     where?: MovieWhereInput
   }
 
-  export type MovieUpdateToOneWithWhereWithoutDataInput = {
+  export type MovieUpdateToOneWithWhereWithoutMovieDataInput = {
     where?: MovieWhereInput
-    data: XOR<MovieUpdateWithoutDataInput, MovieUncheckedUpdateWithoutDataInput>
+    data: XOR<MovieUpdateWithoutMovieDataInput, MovieUncheckedUpdateWithoutMovieDataInput>
   }
 
-  export type MovieUpdateWithoutDataInput = {
+  export type MovieUpdateWithoutMovieDataInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
@@ -13068,11 +13063,11 @@ export namespace Prisma {
     cast?: CelebUpdateManyWithoutCastNestedInput
   }
 
-  export type MovieUncheckedUpdateWithoutDataInput = {
+  export type MovieUncheckedUpdateWithoutMovieDataInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
@@ -13084,7 +13079,7 @@ export namespace Prisma {
   export type MovieCreateWithoutRatingsInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
     genres?: GenreCreateNestedManyWithoutMoviesInput
@@ -13098,7 +13093,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
     genres?: GenreUncheckedCreateNestedManyWithoutMoviesInput
@@ -13151,7 +13146,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutRatingsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
     genres?: GenreUpdateManyWithoutMoviesNestedInput
@@ -13165,7 +13160,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
     genres?: GenreUncheckedUpdateManyWithoutMoviesNestedInput
@@ -13208,7 +13203,7 @@ export namespace Prisma {
   export type MovieCreateWithoutReviewsInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     genres?: GenreCreateNestedManyWithoutMoviesInput
@@ -13222,7 +13217,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     genres?: GenreUncheckedCreateNestedManyWithoutMoviesInput
@@ -13275,7 +13270,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutReviewsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     genres?: GenreUpdateManyWithoutMoviesNestedInput
@@ -13289,7 +13284,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     genres?: GenreUncheckedUpdateManyWithoutMoviesNestedInput
@@ -13332,7 +13327,7 @@ export namespace Prisma {
   export type MovieCreateWithoutGenresInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     addedToFavBy?: UserCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
@@ -13346,7 +13341,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     addedToFavBy?: UserUncheckedCreateNestedManyWithoutFavouriteMoviesInput
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
@@ -13378,7 +13373,7 @@ export namespace Prisma {
   export type MovieCreateWithoutAddedToFavByInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    data: MovieDataCreateNestedOneWithoutMovieInput
+    movieData: MovieDataCreateNestedOneWithoutMovieInput
     ratings?: RatingCreateNestedManyWithoutMovieInput
     reviews?: ReviewCreateNestedManyWithoutMovieInput
     genres?: GenreCreateNestedManyWithoutMoviesInput
@@ -13392,7 +13387,7 @@ export namespace Prisma {
     movieDataId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    celebId?: number | null
+    directorId?: number | null
     ratings?: RatingUncheckedCreateNestedManyWithoutMovieInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutMovieInput
     genres?: GenreUncheckedCreateNestedManyWithoutMoviesInput
@@ -13609,7 +13604,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutDirectorInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
@@ -13641,7 +13636,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutWritersInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
@@ -13655,7 +13650,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
@@ -13668,13 +13663,13 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type MovieUpdateWithoutCastInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
@@ -13688,7 +13683,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
@@ -13701,7 +13696,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type RatingCreateManyMovieInput = {
@@ -13862,7 +13857,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutGenresInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     addedToFavBy?: UserUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
@@ -13876,7 +13871,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     addedToFavBy?: UserUncheckedUpdateManyWithoutFavouriteMoviesNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
@@ -13889,7 +13884,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type RatingCreateManyUserInput = {
@@ -13910,7 +13905,7 @@ export namespace Prisma {
   export type MovieUpdateWithoutAddedToFavByInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
+    movieData?: MovieDataUpdateOneRequiredWithoutMovieNestedInput
     ratings?: RatingUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUpdateManyWithoutMovieNestedInput
     genres?: GenreUpdateManyWithoutMoviesNestedInput
@@ -13924,7 +13919,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
     ratings?: RatingUncheckedUpdateManyWithoutMovieNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutMovieNestedInput
     genres?: GenreUncheckedUpdateManyWithoutMoviesNestedInput
@@ -13937,7 +13932,7 @@ export namespace Prisma {
     movieDataId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    celebId?: NullableIntFieldUpdateOperationsInput | number | null
+    directorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type RatingUpdateWithoutUserInput = {

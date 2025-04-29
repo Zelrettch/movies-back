@@ -6,18 +6,16 @@ import { randomBytes } from 'crypto';
 import { Auth } from '../validation/auth';
 import { PrismaClientKnownRequestError } from '../prisma/client/runtime/library';
 
-type SafeUser = Omit<User, 'password'>;
-
-function createSafeUser(user: User): SafeUser {
-  const { password, ...safeUser } = user;
-  return safeUser;
-}
-
 export async function registerUser(data: Auth.RegisterBody) {
   data.password = await bcrypt.hash(data.password, 10);
   try {
-    const user = await prisma.user.create({ data });
-    return createSafeUser(user);
+    const user = await prisma.user.create({
+      data,
+      omit: {
+        password: true,
+      },
+    });
+    return user;
   } catch (error) {
     if (
       error instanceof PrismaClientKnownRequestError &&
@@ -57,6 +55,7 @@ export async function loginUser(data: Auth.LoginBody) {
         userId: user.id,
       },
     }),
+
     prisma.user.update({
       where: {
         id: user.id,

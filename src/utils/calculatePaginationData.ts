@@ -1,11 +1,11 @@
 const calculatePaginationData = (
-  totalRows: number,
+  totalItems: number,
   perPage: number,
   page: number,
 ) => {
-  const totalPages = Math.ceil(totalRows / perPage);
+  const totalPages = Math.ceil(totalItems / perPage);
   return {
-    totalRows,
+    totalItems,
     perPage,
     totalPages,
     page,

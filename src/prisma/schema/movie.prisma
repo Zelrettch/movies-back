@@ -1,6 +1,6 @@
 model Movie {
   id          Int       @id @default(autoincrement())
-  data        MovieData @relation(fields: [movieDataId], references: [id])
+  movieData   MovieData @relation(fields: [movieDataId], references: [id])
   movieDataId Int       @unique
 
   createdAt DateTime @default(now())
@@ -11,10 +11,10 @@ model Movie {
   reviews      Review[]
   genres       Genre[]
 
-  director Celeb?  @relation("directors", fields: [celebId], references: [id])
-  celebId  Int?
-  writers  Celeb[] @relation("writers")
-  cast     Celeb[] @relation("cast")
+  director   Celeb?  @relation("directors", fields: [directorId], references: [id])
+  directorId Int?
+  writers    Celeb[] @relation("writers")
+  cast       Celeb[] @relation("cast")
 }
 
 model MovieData {
@@ -25,7 +25,7 @@ model MovieData {
   storyline         String   @db.Text
   posterURL         String
   releaseDate       DateTime
-  length            Int
+  length            String
   countryOfOrigin   String
   productionCompany String
   language          String

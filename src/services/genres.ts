@@ -1,5 +1,4 @@
 import prisma from '../utils/prisma';
-import prismaErrorWrapper from '../utils/prismaErrorHandlerWrapper';
 import { genreBody } from '../validation/genres';
 
 export const createGenre = async (data: genreBody) => {
@@ -8,7 +7,7 @@ export const createGenre = async (data: genreBody) => {
   });
 };
 
-const _deleteGenre = async (id: number) => {
+export const deleteGenre = async (id: number) => {
   return await prisma.genre.delete({
     where: { id },
   });
@@ -17,5 +16,3 @@ const _deleteGenre = async (id: number) => {
 export const getGenres = async () => {
   return await prisma.genre.findMany();
 };
-
-export const deleteGenre = prismaErrorWrapper(_deleteGenre);

@@ -130,7 +130,7 @@ exports.Prisma.MovieScalarFieldEnum = {
   movieDataId: 'movieDataId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  celebId: 'celebId'
+  directorId: 'directorId'
 };
 
 exports.Prisma.MovieDataScalarFieldEnum = {
@@ -203,6 +203,7 @@ exports.Prisma.MovieDataOrderByRelevanceFieldEnum = {
   title: 'title',
   storyline: 'storyline',
   posterURL: 'posterURL',
+  length: 'length',
   countryOfOrigin: 'countryOfOrigin',
   productionCompany: 'productionCompany',
   language: 'language'

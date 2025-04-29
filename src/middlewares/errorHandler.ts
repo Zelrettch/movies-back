@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpError } from 'http-errors';
+import { PrismaClientKnownRequestError } from '../prisma/client/runtime/library';
 
 export const errorHandler = (
   err: any,
@@ -12,6 +13,16 @@ export const errorHandler = (
       status: err.status,
       message: err.name,
       data: err,
+    });
+    return;
+  }
+
+  if (err instanceof PrismaClientKnownRequestError) {
+    console.error('\x1b[31m%s\x1b[0m', err.message);
+    res.status(400).json({
+      status: 400,
+      message: 'Prisma client known error',
+      code: err.code,
     });
     return;
   }
