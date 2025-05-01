@@ -81,3 +81,16 @@ export async function logoutUser(session: string) {
     },
   });
 }
+
+export async function getUser(session: string) {
+  return await prisma.user.findFirstOrThrow({
+    where: {
+      session: {
+        token: session,
+      },
+    },
+    omit: {
+      password: true,
+    },
+  });
+}

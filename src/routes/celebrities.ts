@@ -12,18 +12,32 @@ import {
   updateCelebController,
 } from '../controllers/celebrities';
 import { validateIdParams } from '../middlewares/validateIdParams';
+import { authorize } from '../middlewares/authorize';
+import { Role } from '../prisma/client';
+
 const router = Router();
 
-router.post('/', validateBody(createCelebritySchema), createCelebController);
+router.post(
+  '/',
+  authorize(Role.ADMIN),
+  validateBody(createCelebritySchema),
+  createCelebController,
+);
 
 router.get('/:celebId', validateIdParams('celebId'), getCelebByIdController);
 
 router.get('/', getCelebsController);
 
-router.delete('/:celebId', validateIdParams('celebId'), deleteCelebController);
+router.delete(
+  '/:celebId',
+  authorize(Role.ADMIN),
+  validateIdParams('celebId'),
+  deleteCelebController,
+);
 
 router.patch(
   '/:celebId',
+  authorize(Role.ADMIN),
   validateIdParams('celebId'),
   validateBody(updateCelebritySchema),
   updateCelebController,

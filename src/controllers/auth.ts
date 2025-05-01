@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { registerUser, loginUser, logoutUser } from '../services/auth';
+import { registerUser, loginUser, logoutUser, getUser } from '../services/auth';
 import { Auth } from '../validation/auth';
+import createHttpError from 'http-errors';
 
 export async function registerUserController(
   req: Request<{}, {}, Auth.RegisterBody>,
@@ -35,4 +36,17 @@ export async function logoutUserController(req: Request, res: Response) {
   }
   res.clearCookie('session');
   res.status(204).send();
+}
+
+export async function getUserController(req: Request, res: Response) {
+  const session = req.cookies.session;
+  if (!session) {
+    throw createHttpError(401, 'Unauthorized, provide session cookie');
+  }
+  const user = await getUser(session);
+  res.status(200).json({
+    status: 200,
+    message: 'Successfuly found a user',
+    user,
+  });
 }
