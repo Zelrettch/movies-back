@@ -1,7 +1,10 @@
+import { User } from '../prisma/client';
+import { selectSortedMoviesByRatings } from '../prisma/client/sql';
 import calculatePaginationData from '../utils/calculatePaginationData';
 import { flatIdArr } from '../utils/flatIdArr';
 import prisma from '../utils/prisma';
-import { MovieData } from '../validation/movies';
+import { selectMoviesSortedByRating } from '../utils/selectSortedMoviesByRating';
+import { getMovieParamsSchema, MovieData } from '../validation/movies';
 
 export const createMovie = async (payload: MovieData.Create) => {
   return await prisma.movie.create({
@@ -30,22 +33,60 @@ export const createMovie = async (payload: MovieData.Create) => {
   });
 };
 
-export const getMovieById = async (id: number) => {
-  return await prisma.movie.findUniqueOrThrow({
-    where: { id },
-    include: {
-      movieData: true,
-      director: {
-        select: { id: true, firstName: true, lastName: true, imageURL: true },
+export const getMovieById = async (id: number, user: User) => {
+  const [movie, rating, userRating] = await Promise.all([
+    prisma.movie.findUniqueOrThrow({
+      where: { id },
+      include: {
+        movieData: {
+          omit: {
+            id: true,
+          },
+        },
+        director: {
+          select: { id: true, firstName: true, lastName: true, imageURL: true },
+        },
+        writers: {
+          select: { id: true, firstName: true, lastName: true, imageURL: true },
+        },
+        cast: {
+          select: { id: true, firstName: true, lastName: true, imageURL: true },
+        },
       },
-      writers: {
-        select: { id: true, firstName: true, lastName: true, imageURL: true },
+      omit: {
+        movieDataId: true,
+        directorId: true,
       },
-      cast: {
-        select: { id: true, firstName: true, lastName: true, imageURL: true },
+    }),
+    prisma.rating.groupBy({
+      where: { movieId: id },
+      by: ['movieId'],
+      _avg: {
+        value: true,
       },
+    }),
+    prisma.rating.findUnique({
+      where: {
+        movieId_userId: {
+          movieId: id,
+          userId: user.id,
+        },
+      },
+    }),
+  ]);
+  return {
+    movieData: {
+      id: movie.id,
+      createdAt: movie.createdAt,
+      updatedAt: movie.updatedAt,
+      ...movie.movieData,
+      rating: rating[0]._avg.value,
     },
-  });
+    userRating: userRating?.value,
+    director: movie.director,
+    cast: movie.cast,
+    writers: movie.writers,
+  };
 };
 
 export const updateMovie = async (id: number, payload: MovieData.Update) => {
@@ -96,6 +137,10 @@ export const updateMovie = async (id: number, payload: MovieData.Update) => {
         select: { id: true },
       },
     },
+    omit: {
+      movieDataId: true,
+      directorId: true,
+    },
   });
 
   {
@@ -126,28 +171,27 @@ export const getMovies = async (params: MovieData.GetParams) => {
     })),
   };
 
-  const [movies, amount] = await Promise.all([
-    prisma.movie.findMany({
-      take,
-      skip,
-      where,
-      include: {
-        movieData: true,
-      },
-    }),
-    prisma.movie.aggregate({
-      where,
-      _count: true,
-    }),
-  ]);
+  const counted = await prisma.movie.aggregate({
+    where,
+    _count: true,
+  });
+
+  const result = await selectMoviesSortedByRating(
+    params.title,
+    params.genres,
+    params.sortBy,
+    params.orderBy,
+    take,
+    skip,
+  );
 
   const paginationData = calculatePaginationData(
-    amount._count,
+    counted._count,
     take,
     Number(params.page),
   );
   return {
-    items: movies,
+    items: result,
     ...paginationData,
   };
 };

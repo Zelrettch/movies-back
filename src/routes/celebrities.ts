@@ -4,7 +4,6 @@ import {
   createCelebritySchema,
   updateCelebritySchema,
 } from '../validation/celebrities';
-import authenticate from '../middlewares/authenticate';
 import {
   createCelebController,
   deleteCelebController,
@@ -15,7 +14,6 @@ import {
 import { validateIdParams } from '../middlewares/validateIdParams';
 const router = Router();
 
-router.use(authenticate);
 router.post('/', validateBody(createCelebritySchema), createCelebController);
 
 router.get('/:celebId', validateIdParams('celebId'), getCelebByIdController);

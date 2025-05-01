@@ -1,14 +1,13 @@
 import { z } from 'zod';
 import { checkNumer } from '../utils/chekNumber';
-import { parseQueryParams } from '../utils/parseQueryParams';
-import { func } from 'joi';
+import { movieOrderOptions, movieSortOptions } from '../constants';
 
 export const createMovieSchema = z
   .object({
     data: z.object({
       title: z.string().min(1).max(50),
       storyline: z.string().min(1).max(500),
-      posterURL: z.string().min(1).max(100),
+      posterURL: z.string().min(1).max(500),
       releaseDate: z
         .string()
         .date()
@@ -45,6 +44,14 @@ export const getMovieParamsSchema = z.object({
     .transform((a) => a.filter((e) => Number.isInteger(e)))
     .default([])
     .catch([]),
+  sortBy: z
+    .enum(movieSortOptions)
+    .default(movieSortOptions[0])
+    .catch(movieSortOptions[0]),
+  orderBy: z
+    .enum(movieOrderOptions)
+    .default(movieOrderOptions[0])
+    .catch(movieOrderOptions[0]),
 });
 
 export namespace MovieData {

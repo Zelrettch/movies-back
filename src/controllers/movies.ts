@@ -7,6 +7,7 @@ import {
   updateMovie,
 } from '../services/movies';
 import { parseQueryParams } from '../utils/parseQueryParams';
+import { User } from '../prisma/client';
 
 export async function createMovieController(
   req: Request<{}, {}, MovieData.Create>,
@@ -28,7 +29,8 @@ export async function getMovieByIdController(
   res: Response,
 ) {
   const id = Number(req.params.movieId);
-  const movie = await getMovieById(id);
+  const user = req.user as User;
+  const movie = await getMovieById(id, user);
   res.status(200).json({
     status: 200,
     message: `Successfully found movie with id ${id}!`,

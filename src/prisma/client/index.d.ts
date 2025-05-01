@@ -343,8 +343,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -4925,35 +4925,30 @@ export namespace Prisma {
   }
 
   export type RatingAvgAggregateOutputType = {
-    id: number | null
     value: number | null
     movieId: number | null
     userId: number | null
   }
 
   export type RatingSumAggregateOutputType = {
-    id: number | null
     value: number | null
     movieId: number | null
     userId: number | null
   }
 
   export type RatingMinAggregateOutputType = {
-    id: number | null
     value: number | null
     movieId: number | null
     userId: number | null
   }
 
   export type RatingMaxAggregateOutputType = {
-    id: number | null
     value: number | null
     movieId: number | null
     userId: number | null
   }
 
   export type RatingCountAggregateOutputType = {
-    id: number
     value: number
     movieId: number
     userId: number
@@ -4962,35 +4957,30 @@ export namespace Prisma {
 
 
   export type RatingAvgAggregateInputType = {
-    id?: true
     value?: true
     movieId?: true
     userId?: true
   }
 
   export type RatingSumAggregateInputType = {
-    id?: true
     value?: true
     movieId?: true
     userId?: true
   }
 
   export type RatingMinAggregateInputType = {
-    id?: true
     value?: true
     movieId?: true
     userId?: true
   }
 
   export type RatingMaxAggregateInputType = {
-    id?: true
     value?: true
     movieId?: true
     userId?: true
   }
 
   export type RatingCountAggregateInputType = {
-    id?: true
     value?: true
     movieId?: true
     userId?: true
@@ -5084,7 +5074,6 @@ export namespace Prisma {
   }
 
   export type RatingGroupByOutputType = {
-    id: number
     value: number
     movieId: number
     userId: number
@@ -5110,7 +5099,6 @@ export namespace Prisma {
 
 
   export type RatingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     value?: boolean
     movieId?: boolean
     userId?: boolean
@@ -5121,13 +5109,12 @@ export namespace Prisma {
 
 
   export type RatingSelectScalar = {
-    id?: boolean
     value?: boolean
     movieId?: boolean
     userId?: boolean
   }
 
-  export type RatingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "value" | "movieId" | "userId", ExtArgs["result"]["rating"]>
+  export type RatingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"value" | "movieId" | "userId", ExtArgs["result"]["rating"]>
   export type RatingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     movie?: boolean | MovieDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5140,7 +5127,6 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
       value: number
       movieId: number
       userId: number
@@ -5227,8 +5213,8 @@ export namespace Prisma {
      * // Get first 10 Ratings
      * const ratings = await prisma.rating.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const ratingWithIdOnly = await prisma.rating.findMany({ select: { id: true } })
+     * // Only select the `value`
+     * const ratingWithValueOnly = await prisma.rating.findMany({ select: { value: true } })
      * 
      */
     findMany<T extends RatingFindManyArgs>(args?: SelectSubset<T, RatingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -5515,7 +5501,6 @@ export namespace Prisma {
    * Fields of the Rating model
    */
   interface RatingFieldRefs {
-    readonly id: FieldRef<"Rating", 'Int'>
     readonly value: FieldRef<"Rating", 'Int'>
     readonly movieId: FieldRef<"Rating", 'Int'>
     readonly userId: FieldRef<"Rating", 'Int'>
@@ -9905,7 +9890,6 @@ export namespace Prisma {
 
 
   export const RatingScalarFieldEnum: {
-    id: 'id',
     value: 'value',
     movieId: 'movieId',
     userId: 'userId'
@@ -10293,7 +10277,6 @@ export namespace Prisma {
     AND?: RatingWhereInput | RatingWhereInput[]
     OR?: RatingWhereInput[]
     NOT?: RatingWhereInput | RatingWhereInput[]
-    id?: IntFilter<"Rating"> | number
     value?: IntFilter<"Rating"> | number
     movieId?: IntFilter<"Rating"> | number
     userId?: IntFilter<"Rating"> | number
@@ -10302,7 +10285,6 @@ export namespace Prisma {
   }
 
   export type RatingOrderByWithRelationInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
@@ -10311,7 +10293,7 @@ export namespace Prisma {
   }
 
   export type RatingWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    movieId_userId?: RatingMovieIdUserIdCompoundUniqueInput
     AND?: RatingWhereInput | RatingWhereInput[]
     OR?: RatingWhereInput[]
     NOT?: RatingWhereInput | RatingWhereInput[]
@@ -10320,10 +10302,9 @@ export namespace Prisma {
     userId?: IntFilter<"Rating"> | number
     movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "movieId_userId">
 
   export type RatingOrderByWithAggregationInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
@@ -10338,7 +10319,6 @@ export namespace Prisma {
     AND?: RatingScalarWhereWithAggregatesInput | RatingScalarWhereWithAggregatesInput[]
     OR?: RatingScalarWhereWithAggregatesInput[]
     NOT?: RatingScalarWhereWithAggregatesInput | RatingScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Rating"> | number
     value?: IntWithAggregatesFilter<"Rating"> | number
     movieId?: IntWithAggregatesFilter<"Rating"> | number
     userId?: IntWithAggregatesFilter<"Rating"> | number
@@ -10810,7 +10790,6 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedCreateInput = {
-    id?: number
     value: number
     movieId: number
     userId: number
@@ -10823,14 +10802,12 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     movieId?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RatingCreateManyInput = {
-    id?: number
     value: number
     movieId: number
     userId: number
@@ -10841,7 +10818,6 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     movieId?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
@@ -11391,36 +11367,36 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type RatingMovieIdUserIdCompoundUniqueInput = {
+    movieId: number
+    userId: number
+  }
+
   export type RatingCountOrderByAggregateInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
   }
 
   export type RatingAvgOrderByAggregateInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
   }
 
   export type RatingMaxOrderByAggregateInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
   }
 
   export type RatingMinOrderByAggregateInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
   }
 
   export type RatingSumOrderByAggregateInput = {
-    id?: SortOrder
     value?: SortOrder
     movieId?: SortOrder
     userId?: SortOrder
@@ -12669,7 +12645,6 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedCreateWithoutMovieInput = {
-    id?: number
     value: number
     userId: number
   }
@@ -12878,7 +12853,6 @@ export namespace Prisma {
     AND?: RatingScalarWhereInput | RatingScalarWhereInput[]
     OR?: RatingScalarWhereInput[]
     NOT?: RatingScalarWhereInput | RatingScalarWhereInput[]
-    id?: IntFilter<"Rating"> | number
     value?: IntFilter<"Rating"> | number
     movieId?: IntFilter<"Rating"> | number
     userId?: IntFilter<"Rating"> | number
@@ -13406,7 +13380,6 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedCreateWithoutUserInput = {
-    id?: number
     value: number
     movieId: number
   }
@@ -13700,7 +13673,6 @@ export namespace Prisma {
   }
 
   export type RatingCreateManyMovieInput = {
-    id?: number
     value: number
     userId: number
   }
@@ -13749,13 +13721,11 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedUpdateWithoutMovieInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RatingUncheckedUpdateManyWithoutMovieInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
   }
@@ -13888,7 +13858,6 @@ export namespace Prisma {
   }
 
   export type RatingCreateManyUserInput = {
-    id?: number
     value: number
     movieId: number
   }
@@ -13941,13 +13910,11 @@ export namespace Prisma {
   }
 
   export type RatingUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     movieId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RatingUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
     value?: IntFieldUpdateOperationsInput | number
     movieId?: IntFieldUpdateOperationsInput | number
   }

@@ -37,6 +37,7 @@ export const updateCeleb = async (id: number, data: CelebData.Update) => {
 export const getCelebs = async (params: CelebData.GetParams) => {
   const limit = Number(params.perPage);
   const offset = (Number(params.page) - 1) * limit;
+  console.log('Query: ' + params.name);
   const [data, amount] = await Promise.all([
     prisma.$queryRawTyped(getFilteredCelebs(params.name, limit, offset)),
     prisma.$queryRawTyped(countFilteredCelebs(params.name)),

@@ -19,14 +19,21 @@ export const errorHandler = (
 
   if (err instanceof PrismaClientKnownRequestError) {
     console.error('\x1b[31m%s\x1b[0m', err.message);
-    res.status(400).json({
-      status: 400,
-      message: 'Prisma client known error',
-      code: err.code,
+    let message = '';
+    let status = 400;
+    switch (err.code) {
+      case 'P2025':
+        message = 'Not Found';
+        status = 404;
+    }
+    res.status(status).json({
+      status: status,
+      message,
     });
     return;
   }
 
+  console.error('\x1b[31m%s\x1b[0m', err.message);
   res.status(500).json({
     status: 500,
     message: 'Something went wrong',
