@@ -21,13 +21,43 @@ export const getMovieReviews = async (movieId: number) => {
     where: {
       movieId,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 };
 
 export const getUserReviews = async (userId: number) => {
-  return await prisma.review.findMany({
+  const reviews = await prisma.review.findMany({
     where: {
       userId,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+        },
+      },
+      movie: {
+        select: {
+          movieData: {
+            select: {
+              title: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return reviews.map((review) => {
+    const { movie, ...reviewData } = review;
+    return {
+      ...reviewData,
+      movieTitle: movie.movieData.title,
+    };
   });
 };

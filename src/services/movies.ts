@@ -52,6 +52,7 @@ export const getMovieById = async (id: number, user: User) => {
         cast: {
           select: { id: true, firstName: true, lastName: true, imageURL: true },
         },
+        genres: true,
       },
       omit: {
         movieDataId: true,
@@ -80,12 +81,13 @@ export const getMovieById = async (id: number, user: User) => {
       createdAt: movie.createdAt,
       updatedAt: movie.updatedAt,
       ...movie.movieData,
-      rating: rating[0]._avg.value,
+      rating: rating[0]?._avg.value ?? null,
     },
     userRating: userRating?.value,
     director: movie.director,
     cast: movie.cast,
     writers: movie.writers,
+    genres: movie.genres,
   };
 };
 
@@ -157,6 +159,7 @@ export const updateMovie = async (id: number, payload: MovieData.Update) => {
 export const getMovies = async (params: MovieData.GetParams) => {
   const take = Number(params.perPage);
   const skip = (Number(params.page) - 1) * take;
+  console.log('Params: ', params);
 
   const where = {
     movieData: {

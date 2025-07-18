@@ -30,7 +30,7 @@ export async function selectMoviesSortedByRating(
       FROM _genretomovie AS gtm
       WHERE gtm.A IN (${Prisma.join(genres)})
       GROUP BY gtm.B
-      HAVING COUNT(DISTINCT gtm.B) >= ${genres.length}
+      HAVING COUNT(DISTINCT gtm.A) >= ${genres.length}
     )
   `
     : Prisma.empty;

@@ -39,10 +39,10 @@ export async function removeFromFavoutitesController(
 
 export async function getFavouritesController(req: Request, res: Response) {
   const user = req.user as User;
-  const foundedUser = await getFavouriteMovies(user);
+  const favourites = await getFavouriteMovies(user);
   res.status(200).json({
     status: 200,
     message: 'Successfully found favourite movies',
-    data: foundedUser.favouriteMovies,
+    data: favourites,
   });
 }

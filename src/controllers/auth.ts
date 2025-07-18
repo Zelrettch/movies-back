@@ -19,13 +19,15 @@ export async function loginUserController(
   req: Request<{}, {}, Auth.LoginBody>,
   res: Response,
 ) {
-  const session = await loginUser(req.body);
-  res.cookie('session', session?.token, {
+  const user = await loginUser(req.body);
+  res.cookie('session', user.session?.token, {
     httpOnly: true,
   });
+  const { session, ...data } = user;
   res.status(200).json({
     status: 200,
     message: 'Successfully logged in a user',
+    data,
   });
 }
 

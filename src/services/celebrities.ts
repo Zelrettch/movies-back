@@ -11,12 +11,35 @@ export const getCelebById = async (id: number) => {
   const celeb = await prisma.celeb.findUniqueOrThrow({
     where: { id },
     include: {
-      director: true,
-      writer: true,
-      cast: true,
+      director: {
+        include: {
+          movieData: true,
+        },
+      },
+      writer: {
+        include: {
+          movieData: true,
+        },
+      },
+      cast: {
+        include: {
+          movieData: true,
+        },
+      },
     },
   });
-  return celeb;
+  return {
+    ...celeb,
+    director: celeb.director.map((d) => {
+      return { ...d.movieData, id: d.id };
+    }),
+    writer: celeb.writer.map((d) => {
+      return { ...d.movieData, id: d.id };
+    }),
+    cast: celeb.cast.map((d) => {
+      return { ...d.movieData, id: d.id };
+    }),
+  };
 };
 
 export const deleteCeleb = async (id: number) => {
@@ -35,6 +58,7 @@ export const updateCeleb = async (id: number, data: CelebData.Update) => {
 };
 
 export const getCelebs = async (params: CelebData.GetParams) => {
+  console.log('Params: ', params);
   const limit = Number(params.perPage);
   const offset = (Number(params.page) - 1) * limit;
   console.log('Query: ' + params.name);

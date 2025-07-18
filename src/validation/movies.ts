@@ -6,7 +6,7 @@ export const createMovieSchema = z
   .object({
     data: z.object({
       title: z.string().min(1).max(50),
-      storyline: z.string().min(1).max(500),
+      storyline: z.string().min(1).max(10000),
       posterURL: z.string().min(1).max(500),
       releaseDate: z
         .string()
@@ -34,7 +34,7 @@ function transformIdArr(arr: number[]) {
 
 export const getMovieParamsSchema = z.object({
   title: z.string().default(''),
-  perPage: z.string().refine(checkNumer).default('10').catch('10'),
+  perPage: z.string().refine(checkNumer).default('50').catch('50'),
   page: z.string().refine(checkNumer).default('1').catch('1'),
   genres: z
     .string()

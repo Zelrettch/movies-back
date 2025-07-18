@@ -7,10 +7,15 @@ import pino from 'pino-http';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
+const corsOptions = {
+  credentials: true,
+  origin: 'http://localhost:5173',
+};
+
 export const setupServer = (): void => {
   const app = express();
 
-  app.use(cors());
+  app.use(cors(corsOptions));
   app.use(express.json());
   app.use(cookieParser());
 

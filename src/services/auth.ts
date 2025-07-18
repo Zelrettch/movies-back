@@ -65,13 +65,16 @@ export async function loginUser(data: Auth.LoginBody) {
           create: { token },
         },
       },
-      select: {
+      include: {
         session: true,
+      },
+      omit: {
+        password: true,
       },
     }),
   ]);
 
-  return updatedUser.session;
+  return updatedUser;
 }
 
 export async function logoutUser(session: string) {

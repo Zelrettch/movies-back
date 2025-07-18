@@ -33,3 +33,15 @@ export const createRating = async (
     },
   });
 };
+
+export const getMovieRating = async (movieId: number, user: User) => {
+  return await prisma.rating.findFirst({
+    where: {
+      movieId,
+      userId: user.id,
+    },
+    select: {
+      value: true,
+    },
+  });
+};

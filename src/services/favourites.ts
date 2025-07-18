@@ -47,7 +47,7 @@ export const removeFromFavourites = async (movieId: number, user: User) => {
 };
 
 export const getFavouriteMovies = async (user: User) => {
-  return await prisma.user.findUniqueOrThrow({
+  const userData = await prisma.user.findUniqueOrThrow({
     where: {
       id: user.id,
     },
@@ -64,4 +64,8 @@ export const getFavouriteMovies = async (user: User) => {
       },
     },
   });
+  return userData.favouriteMovies.map((movie) => ({
+    id: movie.id,
+    ...movie.movieData,
+  }));
 };

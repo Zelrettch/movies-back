@@ -9,14 +9,11 @@ import {
 import { validateIdParams } from '../middlewares/validateIdParams';
 
 const router = Router();
-
 router.post('/', validateBody(createReviewSchema), createReviewController);
-
 router.get(
   '/movie/:movieId',
   validateIdParams('movieId'),
   getMovieReviewsController,
 );
-
 router.get('/user/', getUserReviewsController);
 export default router;
