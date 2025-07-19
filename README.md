@@ -50,13 +50,13 @@ This is the backend service for the FilmFinder app. It provides a RESTful API fo
 
 4. **Start the server**
 
-   Build project and start it
+   Build project and start it:
    ```bash
    npm run build
    npm run start
    ```
 
-   Or run it using nodemon and ts-node in dev mode
+   Or run it in dev mode:
    ```bash
    npm run dev
    ```
