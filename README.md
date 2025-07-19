@@ -1,4 +1,4 @@
-This is a RESTful backend service for managing a movie database—handling creation, retrieval, updating, and deletion of movie records. Built with Node.js, Express, Prisma and MySQL, it's ideal for powering web or mobile apps with movie-related data.
+movies-back is the backend service for the FilmFinder app. It provides a RESTful API for managing a movie database—handling creation, retrieval, updating, and deletion of movie records. Built with Node.js, Express, MySQL and Prisma ORM
 
 ---
 
