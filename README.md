@@ -40,12 +40,9 @@ This is the backend service for the FilmFinder app. It provides a RESTful API fo
    Copy `.env.example` to `.env` and update the variables:
 
    ```dotenv
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=your_db_user
-   DB_PASSWORD=your_db_pass
-   DB_DATABASE=moviesdb
    PORT=3000
+   NODE_ENV=development
+   DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/movies"
    ```
 
 4. **Start the server**
